@@ -5,61 +5,62 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-  } from "@/components/ui/card"
+} from "@/components/ui/card";
 
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
-  } from "@/components/ui/accordion"
+} from "@/components/ui/accordion";
 import { Button } from "./ui/button";
-  
-  
+import product from "@/type/product";
 
-const ProductCard = () => {
+type productCardProps = {
+    product: product;
+};
 
+const ProductCard = ({ product }: productCardProps) => {
     return (
-
-        <Card className="w-80 min-w-80">
-
+        <Card className="w-80 min-w-80 h-[500px] flex flex-col justify-between shadow-md">
+            {/* Cabeçalho do Card */}
             <CardHeader>
-
                 <CardTitle>
-                    <img className="w-2/3 mx-auto" src="src\assets\controle preto ps4.jpeg" alt="" />
+                    <img
+                        className="w-2/3 h-40 object-contain mx-auto"
+                        src={product.productImage}
+                        alt={product.productName}
+                    />
                 </CardTitle>
 
                 <CardDescription>
-                    <h2 className="text-center font-bold text-2xl">Controle sem fio Dualshock 4</h2>
+                    <h2 className="text-center font-bold text-2xl line-clamp-2">
+                        {product.productName}
+                    </h2>
                 </CardDescription>
+            </CardHeader>
 
-            </CardHeader>   
-
+            {/* Conteúdo do Card */}
             <CardContent>
-                
-            <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="item-1">
-                    <AccordionTrigger className="font-light text-gray-400 cursor-pointer">Descrição do produto</AccordionTrigger>
-                    <AccordionContent>
-                    Revolucionário, intuitivo e preciso: o controle sem fio DualShock4 para o sistema PlayStation4 define esta geração de jogos, 
-                    combinando recursos revolucionários e conforto com controles precisos e intuitivos.                    </AccordionContent>
-                </AccordionItem>
-            </Accordion>
+                <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="item-1">
+                        <AccordionTrigger className="font-light text-gray-400 cursor-pointer">
+                            Descrição do produto
+                        </AccordionTrigger>
+                        <AccordionContent>{product.productDescription}</AccordionContent>
+                    </AccordionItem>
+                </Accordion>
+            </CardContent>
 
-            </CardContent> 
-
+            {/* Rodapé do Card */}
             <CardFooter>
-
-                <div className="flex place-content-between w-full">
-                    <p className="font-bold text-xl">R$ 294,60</p>
+                <div className="flex items-center justify-between w-full">
+                    <p className="font-bold text-xl">{product.cardPrice}</p>
                     <Button className="bg-[#411DE2] text-white cursor-pointer">+</Button>
                 </div>
-
             </CardFooter>
         </Card>
-
     );
-
 };
 
-export default ProductCard; 
+export default ProductCard;
