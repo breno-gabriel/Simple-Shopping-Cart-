@@ -18,9 +18,19 @@ import product from "@/type/product";
 
 type productCardProps = {
     product: product;
-};
+    setShoppingList: React.Dispatch<React.SetStateAction<product[]>>;
+    shoppingList: product[];
+  };
 
-const ProductCard = ({ product }: productCardProps) => {
+const ProductCard = ({ product, setShoppingList, shoppingList }: productCardProps) => {
+
+    const handleAddProduct = () => {
+
+        setShoppingList([product, ...shoppingList]);
+        console.log(shoppingList[0].cardPrice)
+
+    };
+
     return (
         <Card className="w-80 min-w-80 h-[500px] flex flex-col justify-between shadow-md">
             {/* Cabeçalho do Card */}
@@ -56,7 +66,7 @@ const ProductCard = ({ product }: productCardProps) => {
             <CardFooter>
                 <div className="flex items-center justify-between w-full">
                     <p className="font-bold text-xl">{product.cardPrice}</p>
-                    <Button className="bg-[#411DE2] text-white cursor-pointer">+</Button>
+                    <Button onClick={handleAddProduct} className="bg-[#411DE2] text-white cursor-pointer">+</Button>
                 </div>
             </CardFooter>
         </Card>
