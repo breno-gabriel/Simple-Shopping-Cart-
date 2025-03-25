@@ -65,7 +65,7 @@ const ProductCard = ({ product, setShoppingList, shoppingList }: productCardProp
             {/* Rodapé do Card */}
             <CardFooter>
                 <div className="flex items-center justify-between w-full">
-                    <p className="font-bold text-xl">{product.cardPrice}</p>
+                    <p className="font-bold text-xl">R$ {product.cardPrice}</p>
                     <Button onClick={handleAddProduct} className="bg-[#411DE2] text-white cursor-pointer">+</Button>
                 </div>
             </CardFooter>
