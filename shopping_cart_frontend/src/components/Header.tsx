@@ -1,7 +1,21 @@
 import { FaShoppingCart } from "react-icons/fa";
 import { CiLight } from "react-icons/ci";
 
-const Header = () => {
+type headerProps = {
+
+    setRenderShoppingList: (value: boolean) => void; 
+    renderShoppingList: boolean; 
+
+};
+
+const Header = ({renderShoppingList, setRenderShoppingList} : headerProps) => {
+
+    const handleClick = () => {
+
+        setRenderShoppingList(!renderShoppingList); 
+
+    };
+
     return (
         <header className="flex justify-between w-full pr-6 py-8 font-bold">
             <h1 className="text-3xl">
@@ -37,7 +51,7 @@ const Header = () => {
                         </li>
                     </ul>
                 </nav>
-                <FaShoppingCart className="text-4xl cursor-pointer" />
+                <FaShoppingCart className="text-4xl cursor-pointer" onClick={handleClick}/>
                 <CiLight className="text-4xl cursor-pointer" />
             </div>
         </header>

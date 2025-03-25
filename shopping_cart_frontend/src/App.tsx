@@ -12,6 +12,7 @@ import fifaImage from "./assets/productsImage/fifa-23-xbox-one.jpeg";
 import dualsenseImage from "./assets/productsImage/dualsense.jpeg";
 import steamDeckImage from "./assets/productsImage/steam-deck.jpeg";
 import godOfWarImage from "./assets/productsImage/god-of-war-ragnarok.jpeg";
+import ShoppingList from "./components/ShoppingList";
 
 function App() {
   const [products, setProducts] = useState<product[]>([
@@ -65,9 +66,32 @@ function App() {
     }
   ]);
 
+  const [shoppingList, setShoppingList] = useState<product[]>([
+    {
+      productImage: ps5Image,
+      productName: "PlayStation 5",
+      productDescription: "O console definitivo da Sony: experimente carregamentos ultrarrápidos com SSD NVMe, gráficos 4K HDR com ray tracing e feedback tátil imersivo no revolucionário controle DualSense. Inclui leitor de Blu-ray Ultra HD e compatibilidade com todos os jogos PS4.",
+      cardPrice: "R$ 4.499,90"
+    },
+    {
+      productImage: xboxImage,
+      productName: "Xbox Series X",
+      productDescription: "O mais potente console da Microsoft: desempenho em 12 TFLOPS, resolução verdadeira em 4K a 60 FPS (com suporte a 120 FPS), Quick Resume para múltiplos jogos e acesso ao Xbox Game Pass. Arquitetura Zen 2 e RDNA 2 para performance de última geração.",
+      cardPrice: "R$ 4.299,90"
+    },
+    {
+      productImage: switchImage,
+      productName: "Nintendo Switch OLED",
+      productDescription: "Versatilidade reinventada: tela OLED vibrante de 7'', modo portátil, dock para TV e controles Joy-Con removíveis. Biblioteca exclusiva com Mario, Zelda e Pokémon. Bateria com até 9 horas de autonomia e 64GB de armazenamento interno.",
+      cardPrice: "R$ 2.799,90"
+    }
+  ]);
+  const [renderShoppingList, setRenderShoppingList] = useState<boolean>(false);
+
   return (
     <div className="flex flex-col items-center gap-20 justify-center min-h-screen px-20">
-      <Header />
+      <Header setRenderShoppingList={setRenderShoppingList} renderShoppingList = {renderShoppingList}/>
+      <ShoppingList renderShoppingList = {renderShoppingList} shoppingList={shoppingList} setRenderShoppingList={setRenderShoppingList}></ShoppingList>
       <div className="flex flex-wrap gap-5 mb-40">
         {products.map((product, index) => (
           <ProductCard
