@@ -80,7 +80,7 @@ function App() {
   return (
     <div className="flex flex-col items-center gap-20 justify-center min-h-screen px-20">
       <Header setRenderShoppingList={setRenderShoppingList} renderShoppingList = {renderShoppingList}/>
-      <ShoppingList renderShoppingList={renderShoppingList} shoppingList={shoppingList} setRenderShoppingList={setRenderShoppingList} setShoppingList={setShoppingList}></ShoppingList>
+      <ShoppingList renderShoppingList={renderShoppingList} shoppingList={shoppingList} setRenderShoppingList={setRenderShoppingList} setShoppingList={setShoppingList} setProducts={setProducts} products={products}></ShoppingList>
       <div className="flex flex-wrap gap-5 mb-40">
         {products.map((product, index) => (
           <ProductCard

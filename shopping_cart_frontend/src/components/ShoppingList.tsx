@@ -8,10 +8,22 @@ type ShoppingListProps = {
     shoppingList: product[];
     setRenderShoppingList: React.Dispatch<SetStateAction<boolean>>;
     setShoppingList: React.Dispatch<SetStateAction<product[]>>;
+    setProducts: React.Dispatch<SetStateAction<product[]>>;
+    products: product[]; 
   };
   
-const ShoppingList = ({renderShoppingList, shoppingList, setRenderShoppingList, setShoppingList} : ShoppingListProps) => {
+const ShoppingList = ({renderShoppingList, shoppingList, setRenderShoppingList, setShoppingList, setProducts, products} : ShoppingListProps) => {
 
+    const handleFinishSale = () => {
+
+        setRenderShoppingList(false); 
+        setProducts(products.filter((p) => 
+            !shoppingList.some((prod) => prod.id === p.id)
+        ));
+        setShoppingList([]); 
+
+
+    };
 
     const handleCloseList = () => {
 
@@ -47,7 +59,7 @@ const ShoppingList = ({renderShoppingList, shoppingList, setRenderShoppingList, 
                         <><div className="flex  justify-between mb-3 text-xl">
                             <p>Valor total</p>
                             <p>R$ {shoppingList.reduce((acc, product) => acc + product.cardPrice, 0).toFixed(2)}</p>
-                        </div><Button className="bg-[#411DE2] w-full text-xl cursor-pointer hover:bg-[#411DE2]">Encerrar compra</Button></>
+                        </div><Button onClick={handleFinishSale} className="bg-[#411DE2] w-full text-xl cursor-pointer hover:bg-[#411DE2]">Encerrar compra</Button></>
                         : null}
                     </div>
                 </div>
