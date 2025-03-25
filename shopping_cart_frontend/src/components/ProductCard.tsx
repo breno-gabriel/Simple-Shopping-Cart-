@@ -32,7 +32,7 @@ const ProductCard = ({ product, setShoppingList, shoppingList }: productCardProp
     };
 
     return (
-        <Card className="w-80 min-w-80 h-[500px] flex flex-col justify-between shadow-md">
+        <Card className="w-80 min-w-80 min-h-[500px] flex flex-col justify-between shadow-md">
             {/* Cabeçalho do Card */}
             <CardHeader>
                 <CardTitle>
