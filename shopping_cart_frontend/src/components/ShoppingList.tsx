@@ -1,14 +1,16 @@
 import product from "@/type/product";
 import ShoppingProductCard from "./ShoppingProductCard";
 import { Button } from "./ui/button";
+import { SetStateAction } from "react";
 
 type ShoppingListProps = {
     renderShoppingList: boolean;
     shoppingList: product[];
-    setRenderShoppingList: React.Dispatch<React.SetStateAction<boolean>>;
+    setRenderShoppingList: React.Dispatch<SetStateAction<boolean>>;
+    setShoppingList: React.Dispatch<SetStateAction<product[]>>;
   };
   
-const ShoppingList = ({renderShoppingList, shoppingList, setRenderShoppingList} : ShoppingListProps) => {
+const ShoppingList = ({renderShoppingList, shoppingList, setRenderShoppingList, setShoppingList} : ShoppingListProps) => {
 
 
     const handleCloseList = () => {
@@ -31,7 +33,14 @@ const ShoppingList = ({renderShoppingList, shoppingList, setRenderShoppingList} 
                     {shoppingList.length == 0 
                     ? <p className="text-center">Você ainda não adicionou nada ao carrinho :(</p>
                     : 
-                    shoppingList.map((product, index) => (<ShoppingProductCard key={index} {...product} />))}
+                    shoppingList.map((product, index) => (
+                        <ShoppingProductCard
+                            key={index}
+                            product={product}
+                            shoppingList={shoppingList}
+                            setShoppingList={setShoppingList}
+                        />
+                    ))}
                     </div>
                     <div className="p-8">
                         {shoppingList.length > 0 ? 
